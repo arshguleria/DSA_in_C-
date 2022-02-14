@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+
+int main()
+{
+    char A[]="madam";
+    char B[sizeof(A)];
+    int i,j;
+    
+    for(i=0; A[i]!='\0';i++)
+    {
+    }
+    
+    i=i-1;
+
+    
+    for(j=0;i>=0;i--,j++)
+    {
+       B[j] = A[i];
+    }
+    
+    
+    cout<<A<<endl;
+    cout<<B<<endl;
+    cout<<sizeof(B)<<endl;
+    
+    if(A==B)
+    {
+        cout<<"YEEES";
+    }
+}

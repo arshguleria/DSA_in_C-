@@ -1,0 +1,156 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Stack
+{
+    private:
+     int size;
+     int top;
+     T *st;
+    
+    public:
+     Stack()
+     {
+         size=10;
+         top=-1;
+         st = new T[size];
+     }
+     
+     Stack(int size)
+     {
+         this->size = size;
+         top = -1;
+         st = new T[this->size];
+     }
+     
+     void Push(T x);
+     T Pop();
+     T Peek(int index);
+     T StackTop();
+     int isFull();
+     int isEmpty(); 
+     void Display();
+};
+
+template<class T>
+void Stack<T>::Push(T x)
+{
+    if(isFull())
+    {
+        cout<<"Stack is Full";
+    }
+    else
+    {
+        top++;
+        st[top] = x;
+    }
+}
+
+template<class T>
+T Stack<T>::Pop()
+{
+    T x=-1;
+    if(isEmpty())
+    {
+        cout<<"Stack Underflow";
+    }
+    else
+    {
+        x = st[top];
+        top--;
+    }
+    return x;
+}
+
+
+template<class T>
+T Stack<T>::Peek(int index)
+{
+    T x = -1;
+    if(top - index + 1 < 0)
+    {
+        cout<<"Invalid Index";
+    }
+    else
+    {
+        x=st[top - index + 1];
+    }
+    return x;
+}
+
+template<class T>
+T Stack<T>::StackTop()
+{
+    T x=-1;
+    if(isEmpty())
+    {
+        cout<<"Stack is Empty";
+    }
+    else
+    {
+        x= st[top];
+    }
+    return x;
+}
+
+template<class T>
+int Stack<T>::isFull()
+{
+    if(top==size-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+template<class T>
+int Stack<T>::isEmpty()
+{
+    if(top==-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0; 
+    }
+    
+}
+
+template<class T>
+void Stack<T>::Display()
+{
+    for(int i = top; i>=0; i--)
+    {
+        cout<<st[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    Stack<char> s1(5);
+    s1.Push('A');
+    s1.Push('R');
+    s1.Push('S');
+    s1.Push('H');
+    s1.Push('I');
+    
+    s1.Display();
+    
+    s1.Pop();
+    cout<<endl;
+    
+    cout<<s1.StackTop()<<endl;
+    
+    cout<<s1.Peek(3);
+    
+ 
+    
+    return 0;
+    
+}

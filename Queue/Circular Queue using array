@@ -14,14 +14,14 @@ class Queue
      Queue()
      {
          size=10;
-         rear=front=-1;
+         rear=front=0;
          Q = new T[size];
      }
      
      Queue(int size)
      {
          this->size = size;
-         rear=front=-1;
+         rear=front=0;
          Q = new T[this->size];
      }
      

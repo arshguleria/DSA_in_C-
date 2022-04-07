@@ -1,0 +1,125 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Queue
+{
+    private:
+     int size;
+     int rear;
+     int front;
+     T *Q;
+    
+    public:
+     Queue()
+     {
+         size=10;
+         rear=front=-1;
+         Q = new T[size];
+     }
+     
+     Queue(int size)
+     {
+         this->size = size;
+         rear=front=-1;
+         Q = new T[this->size];
+     }
+     
+     void Enqueue(T x);
+     T Dequeue();
+     int isFull();
+     int isEmpty(); 
+     void Display();
+};
+
+template<class T>
+void Queue<T>::Enqueue(T x)
+{
+    if(isFull())
+    {
+        cout<<"Queue is Full"<<endl;
+    }
+    else
+    {
+        rear = (rear+1)%size;
+        Q[rear]=x;
+    }
+}
+
+template<class T>
+T Queue<T>::Dequeue()
+{
+    T x=-1;
+    if(isEmpty())
+    {
+        cout<<"Queue is Empty";
+    }
+    else
+    {
+        
+        front = (front+1)%size ;
+        x = Q[front];
+        
+    }
+    return x;
+}
+
+
+template<class T>
+int Queue<T>::isFull()
+{
+    if((rear+1)%size == front)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+template<class T>
+int Queue<T>::isEmpty()
+{
+    if(front == rear)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0; 
+    }
+    
+}
+
+template<class T>
+void Queue<T>::Display()
+{
+    for(int i = front+1; i<=rear; i++)
+    {
+        cout<<Q[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    Queue<char> q1(10);
+    q1.Enqueue('A');
+    q1.Enqueue('R');
+    q1.Enqueue('S');
+    q1.Enqueue('H');
+    
+    q1.Display();
+    
+    q1.Dequeue();
+    q1.Dequeue();
+    q1.Dequeue();
+    q1.Enqueue('A');
+    q1.Display();
+    
+ 
+    
+    return 0;
+    
+}

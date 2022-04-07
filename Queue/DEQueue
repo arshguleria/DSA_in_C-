@@ -1,0 +1,160 @@
+#include <iostream>
+using namespace std;
+
+template <class T>
+class Queue
+{
+    private:
+     int size;
+     int rear;
+     int front;
+     T *Q;
+    
+    public:
+     Queue()
+     {
+         size=10;
+         rear=front=-1;
+         Q = new T[size];
+     }
+     
+     Queue(int size)
+     {
+         this->size = size;
+         rear=front=-1;
+         Q = new T[this->size];
+     }
+     
+     void frontEnqueue(T x);
+     void rearEnqueue(T x);
+     T frontDequeue();
+     T rearDequeue();
+     int isFull();
+     int isEmpty(); 
+     void Display();
+};
+
+template<class T>
+void Queue<T>::frontEnqueue(T x)
+{
+    if(isFull())
+    {
+        cout<<"Queue is Full"<<endl;
+    }
+    else 
+    {
+        if(front==-1)
+          cout<<"Cant be added from front"<<endl;
+        else
+        {
+          Q[front]=x;
+          front--;
+        }
+    }
+}
+template<class T>
+void Queue<T>::rearEnqueue(T x)
+{
+    if(isFull())
+    {
+        cout<<"Queue is Full"<<endl;
+    }
+    else
+    {
+        rear++;
+        Q[rear]=x;
+    }
+}
+
+template<class T>
+T Queue<T>::frontDequeue()
+{
+    T x=-1;
+    if(isEmpty())
+    {
+        cout<<"Queue is Empty";
+    }
+    else
+    {
+        front++;
+        x = Q[front];
+        
+    }
+    return x;
+}
+
+template<class T>
+T Queue<T>::rearDequeue()
+{
+    T x=-1;
+    if(isEmpty())
+    {
+        cout<<"Queue is Empty";
+    }
+    else
+    {
+        x = Q[rear];
+        rear--;
+        
+    }
+    return x;
+}
+
+
+template<class T>
+int Queue<T>::isFull()
+{
+    if(rear == size-1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+template<class T>
+int Queue<T>::isEmpty()
+{
+    if(front == rear)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0; 
+    }
+    
+}
+
+template<class T>
+void Queue<T>::Display()
+{
+    for(int i = front+1; i<=rear; i++)
+    {
+        cout<<Q[i]<<" ";
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    Queue<char> q1(10);
+    q1.rearEnqueue('A');
+    q1.rearEnqueue('R');
+    q1.rearEnqueue('S');
+    q1.frontEnqueue('H');
+    
+    q1.Display();
+    
+    cout<<q1.frontDequeue()<<endl;
+    q1.frontEnqueue('Z');
+    cout<<q1.rearDequeue()<<endl;
+    q1.Display();
+    
+ 
+    
+    return 0;
+    
+}             
